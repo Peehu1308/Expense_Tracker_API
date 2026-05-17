@@ -2,12 +2,12 @@ const express=require('express')
 const router=express.Router();
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
-const {body,validationTResult, validationResult}=require('express-validator')
-const prism=require('../db')
+const {body, validationResult}=require('express-validator')
+const prisma=require('../db')
 
 router.post('/register',[
     body('email').isEmail(),
-    body('password').isLength({MIN:6}),
+    body('password').isLength({min:6}),
 ],async(req,res,next)=>{
     const errors=validationResult(req);
     if(!errors.isEmpty())return res.status(400).json({errors:errors.array()});
