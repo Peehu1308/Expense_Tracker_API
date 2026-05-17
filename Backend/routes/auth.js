@@ -5,6 +5,7 @@ const jwt=require('jsonwebtoken')
 const {body, validationResult}=require('express-validator')
 const prisma=require('../db')
 
+
 router.post('/register',[
     body('email').isEmail(),
     body('password').isLength({min:6}),
@@ -44,7 +45,7 @@ router.post('/login',[
         if(!user)return res.status(404).json({error:"user not found"});
 
         const isMatch=await bcrypt.compare(password,user.password);
-        if(!isMatch) return res.status(404).json({error:"invalid creentials"});
+        if(!isMatch) return res.status(404).json({error:"invalid credentials"});
 
         const token=jwt.sign(
             {userId:user.id,email:user.email},
