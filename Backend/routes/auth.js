@@ -13,7 +13,7 @@ router.post('/register',[
     if(!errors.isEmpty())return res.status(400).json({errors:errors.array()});
 
     try{
-        const {email,password}=req.body;
+        const {username,email,password}=req.body;
 
         const existing=await prisma.user.findUnique({where:{email}});
         if(existing)return res.status(409).json({error:"Email is already registered"});
@@ -39,7 +39,7 @@ router.post('/login',[
     if(!errors.isEmpty())return res.status(400).json({errors:errors.array()});
 
     try{
-        const {email,password}=req.body;
+        const {username,email,password}=req.body;
         const user=await prisma.user.findUnique({where:{email}});
         if(!user)return res.status(404).json({error:"user not found"});
 
