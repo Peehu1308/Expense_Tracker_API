@@ -10,4 +10,24 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url=env("DataBASE_URL)
+}
+
+model User{
+  id INT @id @default(autoincrement())
+  username String
+  email String @unique
+  password String
+  expenses Expense[]
+
+}
+
+model Expense{
+  id Int @id @default(autoincrement())
+  title String
+  amount Float
+  category String
+  createdAt DateTime @default(now())
+  userId Int
+  user User @relation(fie;d:[userId],referemces:[id])
 }
