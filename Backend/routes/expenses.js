@@ -26,7 +26,7 @@ router.post('/add_expense',[
 
 router.get("/get_expense",async(req,res,next)=>{
     try{
-        const expenses=await Expenses.find();
+        const expenses=await Expenses.find().sort({createdAt:-1});
 
         res.status(200).json({
             message:"Expenses fetched successfully",
@@ -36,6 +36,25 @@ router.get("/get_expense",async(req,res,next)=>{
     catch(err){
         next(err);
     }
+});
+
+router.get("/get_expenses",async(req,res,next)=>{
+    try{
+        const {category}=req.query;
+        let filter={};
+        if(category){
+            filter.category=category;
+        }
+        const expenses=await Expenses.find(filter);
+        res.status(200).json({data:expenses});
+
+
+
+    }
+    catch(err){
+        next(err);
+    }
 })
+
 
 module.exports=router;
