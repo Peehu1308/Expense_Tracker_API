@@ -7,6 +7,7 @@ const errorHandler=require('./middleware/errorHandler')
 
 
 const authRoutes=require('./routes/auth');
+const expenseRoutes=require('./routes/expenses')
 
 const app=express();
 
@@ -14,6 +15,7 @@ connectDB();
 app.use(express.json());
 
 app.use('/auth',authRoutes);
+app.use('/expenses',expenseRoutes);
 
 app.use(errorHandler);
 const PORT=process.env.PORT|| 3000;
