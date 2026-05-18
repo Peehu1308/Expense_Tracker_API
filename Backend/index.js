@@ -1,6 +1,7 @@
 const dotenv=require('dotenv');
 dotenv.config();
 const express=require('express');
+const connectDB=require('./db')
 
 const errorHandler=require('./middleware/errorHandler')
 
@@ -8,6 +9,8 @@ const errorHandler=require('./middleware/errorHandler')
 const authRoutes=require('./routes/auth');
 
 const app=express();
+
+connectDB();
 app.use(express.json());
 
 app.use('/auth',authRoutes);
