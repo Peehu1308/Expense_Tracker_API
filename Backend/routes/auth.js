@@ -40,7 +40,7 @@ router.post('/login',[
 
     try{
         const {username,email,password}=req.body;
-        const user=await User.findOne({where:{email}});
+        const user=await User.findOne({email});
         if(!user)return res.status(404).json({error:"user not found"});
 
         const isMatch=await bcrypt.compare(password,user.password);
@@ -51,6 +51,7 @@ router.post('/login',[
             process.env.JWT_SECRET,
             {expiresIn:'7d'}
         );
+        res.status(200).json({message:"login successful"})
         res.json({token});
     }
     catch(err){
