@@ -28,7 +28,7 @@ router.post('/register',[
         res.status(201).json({user});
     }
     catch(err){
-        console.log(err)
+        next(err);
     }
 });
 
@@ -55,7 +55,7 @@ router.post('/login',[
         res.json({token});
     }
     catch(err){
-        console.log(err);
+        next(err);
     }
 })
 
