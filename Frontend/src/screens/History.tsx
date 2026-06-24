@@ -16,7 +16,7 @@ const History = () => {
 
   const tabs = ['All', 'Food', 'Misc', 'Rent', 'Clothing', 'Books'];
 
-  const sum=expenses.reduce((acc,expense)=>acc+expense.amount,0);
+  const sum=filteredExpenses.reduce((acc,expense)=>acc+expense.amount,0);
   return (
     <div>History
 
@@ -33,20 +33,14 @@ const History = () => {
         ))}
 
       </div>
-      {expenses.length>0?(
-        expenses.map((expense)=>(
+      {filteredExpenses.length>0?(
+        filteredExpenses.map((expense)=>(
           <div key={expense._id} className='flex flex-row gap-3'>
-            {
-              (expense.category===activeTab  || activeTab==='All')&& (
-               <div className='flex flex-row gap-3'>
-                 <p>{expense.category}</p>
-      
-            <p>{expense.amount}</p>
-            <p>{expense.note}</p>
-                </div>
-
-              )
-            }
+            <div key={expense._id} className="flex flex-row gap-3">
+      <p>{expense.category}</p>
+      <p>{expense.amount}</p>
+      <p>{expense.note}</p>
+    </div>
             </div>
         ))
       ):(
