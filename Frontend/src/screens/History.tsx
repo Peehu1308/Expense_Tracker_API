@@ -36,11 +36,17 @@ const History = () => {
       {expenses.length>0?(
         expenses.map((expense)=>(
           <div key={expense._id} className='flex flex-row gap-3'>
-            <p>{expense.category}</p>
+            {
+              (expense.category===activeTab  || activeTab==='All')&& (
+               <div className='flex flex-row gap-3'>
+                 <p>{expense.category}</p>
       
             <p>{expense.amount}</p>
             <p>{expense.note}</p>
+                </div>
 
+              )
+            }
             </div>
         ))
       ):(
