@@ -16,7 +16,7 @@ router.post('/register',[
     try{
         const {username,email,password}=req.body;
 
-        const existing=await User.findOne({where:{email}});
+        const existing=await User.findOne({email});
         if(existing)return res.status(409).json({error:"Email is already registered"});
         
         const hashedPassword=await bcrypt.hash(password,10);
@@ -50,8 +50,8 @@ router.post('/login',[
             process.env.JWT_SECRET,
             {expiresIn:'7d'}
         );
-        res.status(200).json({message:"login successful"})
-        res.json({token});
+        res.status(200).json({message:"login successful",token})
+        
     }
     catch(err){
         next(err);
