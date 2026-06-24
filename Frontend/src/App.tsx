@@ -7,6 +7,7 @@ import Wallet from './screens/Wallet'
 import Payment from './screens/Payment'
 import History from './screens/History'
 import Webhook from './screens/Webhook'
+import Sidebar from './components/Sidebar'
 
 function App() {
 
@@ -15,7 +16,10 @@ function App() {
     <>
     
     <BrowserRouter>
-    <Routes>
+    <div className='flex'>
+      <Sidebar/>
+   <div className='flex-1'>
+     <Routes>
 
       <Route path="/" element={<HomeScreen/>}/>
       <Route path="/wallet" element={<Wallet/>}/>
@@ -23,6 +27,8 @@ function App() {
       <Route path="/history" element={<History/>}/>
       <Route path="/webhook" element={<Webhook/>}/>
     </Routes>
+   </div>
+    </div>
     </BrowserRouter>
     </>
   )
