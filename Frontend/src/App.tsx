@@ -17,8 +17,11 @@ function App() {
     
     <BrowserRouter>
     <div className='flex'>
+      <div className='flex-shrink-0'>
       <Sidebar/>
-   <div className='flex-1'>
+      </div>
+      
+   <div className='flex-1 px-6'>
      <Routes>
 
       <Route path="/" element={<HomeScreen/>}/>

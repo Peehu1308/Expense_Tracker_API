@@ -1,20 +1,19 @@
-const dotenv=require('dotenv');
+import dotenv from 'dotenv';
 dotenv.config();
-const express=require('express');
-const connectDB=require('./db')
+import express from 'express';
+import errorHandler from './middleware/errorHandler.js';
+import connectDB from './db.js';
+import cors from 'cors';
 
-const errorHandler=require('./middleware/errorHandler')
-
-
-const authRoutes=require('./routes/auth');
-const expenseRoutes=require('./routes/expenses')
+import authRoutes from './routes/auth.js';
+import expenseRoutes from './routes/expenses.js';
 
 const app=express();
 
 connectDB();
 app.use(express.json());
 
-const cors=require('cors');
+
 app.use(cors({origin:'http://localhost:5173'}));
 
 app.use('/auth',authRoutes);
