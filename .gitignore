@@ -1,6 +1,9 @@
-Backend/node_modules
-# Keep environment variables out of version control
+node_modules/
+Backend/node_modules/
+Frontend/node_modules/
+
+# Environment files
 Backend/.env
 
-Backend/generated/prisma
-Frontend/node_modules
+# Generated files
+Backend/generated/prisma/
